@@ -1,0 +1,23 @@
+{
+  "name": "polls",
+  "version": "1.0.0",
+  "description": "Seja bem vindo ao repositório do código API Polls, desenvolvido na NLW Expert, que aborda a criação de um sistema de enquetes em 👉 Real Time, utilizando banco de dados 👉 PostgreSQL, protocolo 👉 WebSockets para monitorar os votos de uma enquete, além de utilizar um banco de dados em 👉 Redis para armazenar a contagem de votos de cada opção em cada enquete 🚀.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/http/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "prisma": "^5.9.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@prisma/client": "5.9.1",
+    "fastify": "^4.26.0",
+    "zod": "^3.22.4"
+  }
+}
