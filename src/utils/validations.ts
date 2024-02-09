@@ -1,5 +1,10 @@
 import z from 'zod'
 
 export const pollSchema = z.object({
-    title: z.string({ required_error: 'Campo título obrigatório.' })
+    title: z.string({ required_error: 'Campo título obrigatório.' }),
+    options: z.array(z.string(), { required_error: 'Campo options obrigatório.' })
+})
+
+export const getPollSchema = z.object({
+    pollId: z.string().uuid()
 })
