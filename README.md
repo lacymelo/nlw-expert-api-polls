@@ -85,6 +85,11 @@ app.register(cookie, {
 ```
 🛠️ A configuração deve ser adicionada no arquivo `sever.ts` da sua aplicação, o parâmetro `secret` da configuração pode ser definido como você quiser.
 
+🛠️ Agora para trabalhar com a votação em `real time`, vamos instalar o módulo `websocket` do fastify, utilizando o seguinte comando.
+```bash
+pnpm i @fastify/websocket
+```
+
 ## :arrow_forward: Configurações do Docker
 > Esses são os comandos e configurações do docker.
 

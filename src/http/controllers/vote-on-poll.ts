@@ -3,6 +3,7 @@ import { makeDeleteVoteUseCase } from "@/useCases/factories/make-delete-vote-use
 import { makeUserPreviousVotePoll } from "@/useCases/factories/make-user-previous-vote-poll";
 import { makeVoteUseCase } from "@/useCases/factories/make-vote-use-case";
 import { voteOnPollBodySchema, voteOnPollParamsSchema } from "@/utils/validations";
+import { voting } from "@/utils/voting-pub-sub";
 import { randomUUID } from "crypto";
 import { FastifyReply, FastifyRequest } from "fastify";
 
@@ -23,7 +24,12 @@ export async function voteOnPoll(request: FastifyRequest, reply: FastifyReply) {
             let deletePreviousVote = await deleteVote.execute({ voteId: previousVote.id })
 
             if (deletePreviousVote) {
-                await redis.zincrby(pollId, -1, previousVote.pollOptionId)
+                const votes = await redis.zincrby(pollId, -1, previousVote.pollOptionId)
+
+                voting.publish(pollId, {
+                    pollOptionId: previousVote.pollOptionId,
+                    votes: Number(votes)
+                })
             }
         } else {
             return reply.status(400).send({ message: 'you already voted on this poll' })
@@ -48,7 +54,12 @@ export async function voteOnPoll(request: FastifyRequest, reply: FastifyReply) {
         throw err
     }
 
-    await redis.zincrby(pollId, 1, pollOptionId)
+    const votes = await redis.zincrby(pollId, 1, pollOptionId)
+
+    voting.publish(pollId, {
+        pollOptionId,
+        votes: Number(votes)
+    })
 
     return await reply.status(200).send(vote)
 }
