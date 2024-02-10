@@ -38,7 +38,7 @@ export async function getPoll(request: FastifyRequest, reply: FastifyReply) {
             poll: {
                 id: poll?.id,
                 title: poll?.title,
-                options: poll?.options?.map((option: any) => {
+                options: poll?.options?.map((option) => {
                     return {
                         id: option.id,
                         title: option.title,
