@@ -6,12 +6,11 @@ export async function pollResults(app: FastifyInstance) {
     app.get('/polls/:pollId/results', {
         websocket: true
     }, (connection, request) => {
-        connection.socket.on('message', (message: string) => {
-            const { pollId } = getPollSchema.parse(request.params)
 
-            voting.subscribe(pollId, (message) => {
-                connection.socket.send(JSON.stringify(message))
-            })
+        const { pollId } = getPollSchema.parse(request.params)
+
+        voting.subscribe(pollId, (message) => {
+            connection.socket.send(JSON.stringify(message))
         })
     })
 }
