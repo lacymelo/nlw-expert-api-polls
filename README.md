@@ -1,11 +1,11 @@
 <div align="justify">
-  <h1>
-    🤖 NLW Expert
-  </h1>
+  <p align="center">
+    <img alt="Logo NLW Expert - Rocketseat" src="./src/assets/logo.png" width="300px" />
+  </p>
 
-  <h2>
-    Trilha Node: API Polls
-  </h2>
+  <h1 align="center">
+    🤖 Trilha Node: API Polls
+  </h1>
 
   > Seja bem vindo ao repositório do código API Polls, desenvolvido na NLW Expert, que aborda a criação de um sistema de enquetes em 👉 Real Time, utilizando banco de dados 👉 PostgreSQL, protocolo 👉 WebSockets para monitorar os votos de uma enquete, além de utilizar um banco de dados em 👉 Redis para armazenar a contagem de votos de cada opção em cada enquete 🚀.
 </div>
@@ -34,13 +34,22 @@ pnpm i typescript @types/node -D
 ```bash
 npx tsc --init
 ```
-✨ Com arquivo criado, você precisará fazer algumas configurações, utilizando essa string de busca no google `node target mapping github`, você vai encontrar um link para as principais configurações que a microsoft indica para cada versão do node, para a minha versão do node foi recomenda a seguinte a alteração de configuração no `tsconfig.json`.
+🛠️ Com arquivo criado, você precisará fazer algumas configurações, utilizando essa string de busca no google `node target mapping github`, você vai encontrar um link para as principais configurações que a microsoft indica para cada versão do node, para a minha versão do node foi recomenda a seguinte a alteração de configuração no `tsconfig.json`.
 ```bash
 {
   "compilerOptions": {
+    "target": "ES2022",
     "lib": ["ES2023"],
     "module": "node16",
-    "target": "ES2022"
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
   }
 }
 ```
@@ -48,7 +57,7 @@ npx tsc --init
 ```bash
 pnpm i tsx -D
 ```
-✨ No seu `package.json`, adicione essa configuração em `scripts`.
+🛠️ No `package.json`, vamos adicionar uma configuração responsável por executar o servidor, para isso adicione em `scripts` a seguinte estrutura.
 ```bash
   "scripts": {
     "dev": "tsx watch src/http/server.ts"
@@ -62,10 +71,52 @@ pnpm i fastify
 ```bash
 pnpm i zod
 ```
+✨ Quando um usuário vota em uma enquete, o voto deve ser registrado apenas uma vez. Para resolver esse requisito, iremos utilizar a biblioteca `@fastify/cookie` para lidar com cookies. Para instalar essa dependência, utilize o seguinte comando.
+```bash
+pnpm i @fastify/cookie
+```
+🛠️ Acessando a documentação do `fastify/cookie`, você vai encontrar a seguinte configuração.
+```bash
+app.register(cookie, {
+    secret: "key-nwl-poll",
+    hook: 'onRequest',
+    parseOptions: {}
+})
+```
+🛠️ A configuração deve ser adicionada no arquivo `sever.ts` da sua aplicação, o parâmetro `secret` da configuração pode ser definido como você quiser.
 
 ## :arrow_forward: Configurações do Docker
 > Esses são os comandos e configurações do docker.
 
+🛠️ Crie um arquivo de configuração `docker-compose.yml`, com as seguintes definições.
+```bash
+version: '3.7'
+
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=polls
+    volumes:
+      - polls_pg_data:/bitnami/postgresql
+
+  redis:
+    image: bitnami/redis:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'polls_redis_data:/bitnami/redis/data'
+
+volumes:
+  polls_pg_data:
+  polls_redis_data:
+```
 ✨ Para executar o docker, execute este comando.
 ```bash
 docker compose up -d

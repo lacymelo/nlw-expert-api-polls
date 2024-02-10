@@ -8,3 +8,11 @@ export const pollSchema = z.object({
 export const getPollSchema = z.object({
     pollId: z.string().uuid()
 })
+
+export const voteOnPollBodySchema = z.object({
+    pollOptionId: z.string().uuid()
+})
+
+export const voteOnPollParamsSchema = z.object({
+    pollId: z.string().uuid()
+})
