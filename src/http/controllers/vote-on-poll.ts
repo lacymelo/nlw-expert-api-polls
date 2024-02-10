@@ -2,8 +2,8 @@ import { redis } from "@/lib/radis";
 import { makeDeleteVoteUseCase } from "@/useCases/factories/make-delete-vote-use-case";
 import { makeUserPreviousVotePoll } from "@/useCases/factories/make-user-previous-vote-poll";
 import { makeVoteUseCase } from "@/useCases/factories/make-vote-use-case";
+import { voting } from "@/useCases/voting-pub-sub";
 import { voteOnPollBodySchema, voteOnPollParamsSchema } from "@/utils/validations";
-import { voting } from "@/utils/voting-pub-sub";
 import { randomUUID } from "crypto";
 import { FastifyReply, FastifyRequest } from "fastify";
 

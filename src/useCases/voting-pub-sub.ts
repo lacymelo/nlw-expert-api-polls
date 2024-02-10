@@ -1,7 +1,7 @@
 type Message = { pollOptionId: string, votes: number }
 type Subscriber = (message: Message) => void
 
-class VotingPubSub {
+class VotingPubSubUseCase {
     private channels: Record<string, Subscriber[]> = {}
 
     // ouvindo subscriber no canal
@@ -25,4 +25,4 @@ class VotingPubSub {
     }
 }
 
-export const voting = new VotingPubSub()
+export const voting = new VotingPubSubUseCase()
