@@ -3,7 +3,6 @@ import { PollRepository } from "@/repositories/poll-repository";
 interface GetPollRequestUseCase {
     pollId: string
 }
-
 export class GetPollUseCase {
     constructor(private readonly prismaRepository: PollRepository) { }
 

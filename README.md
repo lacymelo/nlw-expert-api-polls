@@ -53,7 +53,7 @@ npx tsc --init
   }
 }
 ```
-✨ Converter o código TypeScript para JavaScript para uso com o Node pode ser trabalhoso. Para evitar essa complexidade, vamos instalar a biblioteca `tsx``, que automatiza esse processo de conversão. Para instalar, execute o seguinte comando.
+✨ Converter o código TypeScript para JavaScript para uso com o Node pode ser trabalhoso. Para evitar essa complexidade, vamos instalar a biblioteca `tsx`, que automatiza esse processo de conversão. Para instalar, execute o seguinte comando.
 ```bash
 pnpm i tsx -D
 ```
@@ -63,7 +63,7 @@ pnpm i tsx -D
     "dev": "tsx watch src/http/server.ts"
   },
 ```
-✨ Para criar o servidor http no node vamos usar o `fastify`, instale usando o seguinte comando.
+✨ Para criar o servidor `http` no node vamos usar o `fastify`, instale usando o seguinte comando.
 ```bash
 pnpm i fastify
 ```
@@ -144,6 +144,13 @@ npx prisma migrate dev
 ✨ O prisma possui uma interface integrada que permite navegar pelo banco de dados, para abrir essa interface execute o comando.
 ```bash
 npx prisma studio
+```
+## :arrow_forward: Configurações do Radis
+> Esses são os comandos e configurações do Radis.
+
+✨ Para manipular a base de dados no formato de ranking vamos usar o `Radis`, para isso instale a lib `ioredis` usando o seguinte comando.
+```bash
+pnpm i ioredis
 ```
 # :closed_book: License
 
