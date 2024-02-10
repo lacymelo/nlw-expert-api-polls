@@ -1,6 +1,5 @@
 import { voting } from "@/useCases/voting-pub-sub";
 import { getPollSchema } from "@/utils/validations";
-// import { voting } from "@/utils/voting-pub-sub";
 import { SocketStream } from "@fastify/websocket";
 import { FastifyRequest } from "fastify";
 
