@@ -10,14 +10,23 @@
   > Seja bem vindo ao repositório do código API Polls, desenvolvido na NLW Expert, que aborda a criação de um sistema de enquetes em 👉 Real Time, utilizando banco de dados 👉 PostgreSQL, protocolo 👉 WebSockets para monitorar os votos de uma enquete, além de utilizar um banco de dados em 👉 Redis para armazenar a contagem de votos de cada opção em cada enquete 🚀.
 </div>
 
+## :eyes: Escalabilidade
+
+<div align="justify">
+
+  > Nossa API representa uma versão aprimorada daquela exibida na nlw-expert. Ela oferece uma solução altamente escalável e modularizada, projetada para proporcionar um desempenho excepcional e uma flexibilidade incomparável.
+
+  <p align="center">
+    <img alt="Logo NLW Expert - Rocketseat" src="./src/assets/escalabilidade.png" width="220px" />
+  </p>
+
+</div>
+
 ## :rocket: Funcionalidades
 - [X] Criar enquete
 - [X] Recuperar detalhes de uma única enquete
 - [X] Criar votos em uma enquete
 ---
-
-## :eyes: Visite a trilha Node
-👉 [trilha node](https://app.rocketseat.com.br/events/nlw-expert/nodejs/encerramento-nlw-expert)
 
 ##  📥 Configurações e instalações
 > Estas são todas as bibliotecas utilizadas neste projeto, verifique cada uma com atenção.
@@ -88,6 +97,10 @@ app.register(cookie, {
 🛠️ Agora para trabalhar com a votação em `real time`, vamos instalar o módulo `websocket` do fastify, utilizando o seguinte comando.
 ```bash
 pnpm i @fastify/websocket
+```
+✨ Para o gerenciamento de variáveis ambientes, optou pela lib dotenv, para instalar utilize o comando a seguir.
+```bash
+pnpm i dotenv
 ```
 
 ## :arrow_forward: Configurações do Docker
